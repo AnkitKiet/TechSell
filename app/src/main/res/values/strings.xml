@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">TechSell</string>
+    <string name="register">Create A New Account</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="no_internet">Could not connect to internet</string>
+    <string name="no_internet_title">Network Error</string>
+    <string name="submit">Submit</string>
+    <string name="ok">OK</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="closeDrawer">Navigation View</string>
+    <string name="openDrawer">Navigation View Closed</string>
+    <string name="retry">Retry</string>
+    <string name="logout_message">Are you sure that you want to logout?</string>
+    <string name="logout_success">Logged out successfully !!</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
+    <string name="warning">Warning</string>
+    <string name="yes">Yes</string>
+    <string name="passwords_didnt_match_title">Incorrect Password</string>
+    <string name="passwords_didnt_match">Passwords Didn\'t Match</string>
+    <string name="blank_fields_title">Blank Fields</string>
+    <string name="blank_fields">Mandatory Fields shouldn\'t be blank.</string>
+
+    <string name="no">No</string>
+    <string name="login_activity_invalid_password_title">Invalid Password</string>
+    <string name="login_activity_invalid_password">Password cannot be blank.</string>
+    <string name="login_activity_invalid_phone_title">Invalid Phone Number</string>
+    <string name="login_activity_invalid_phone">Phone Number should be 10 digit long.</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login"> Already registred! Login Me. </string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+    <string name="hint_gender">Gender</string>
+    <string name="hint_contact">Mobile Number</string>
+    <string name="hint_collage">Collage</string>
+    <string name="hint_age">Age</string>
+    <string name="loading">Loading</string>
+    <string name="logout">Logout</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="Wishlist">Wishlist</string>
+    <string name="Profile">Profile</string>
+    <string name="History">View History</string>
+    <string name="privacy">Privacy Policy</string>
+
+</resources>

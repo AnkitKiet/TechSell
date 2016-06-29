@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#F1F0CC">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Start Making Deals"
+        android:textSize="25dip"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:id="@+id/textView3"
+        android:paddingBottom="50dip"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sell Items"
+        android:textSize="30dip"
+        android:drawableLeft="@drawable/sellitem"
+        android:textColor="@color/white"
+        android:background="@drawable/button_dashboard"
+        android:id="@+id/sellitem"
+        android:layout_gravity="center_horizontal"
+        android:shadowColor="#0A0101"
+        android:shadowDx="0"
+        android:shadowDy="-7"
+        android:shadowRadius="3" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buy Items"
+        android:textSize="30dip"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/buyitem"
+        android:background="@drawable/button_dashboard"
+        android:id="@+id/buyitem"
+        android:shadowColor="#0A0101"
+        android:shadowDx="0"
+        android:shadowDy="-7"
+        android:shadowRadius="3" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Withdraw Items"
+        android:textSize="30dip"
+        android:drawableLeft="@drawable/delete"
+        android:textColor="@color/white"
+        android:background="@drawable/button_dashboard"
+        android:id="@+id/deleteitem"
+        android:layout_gravity="center_horizontal"
+        android:shadowColor="#0A0101"
+        android:shadowDx="0"
+        android:shadowDy="-7"
+        android:shadowRadius="3" />
+
+
+</LinearLayout>
