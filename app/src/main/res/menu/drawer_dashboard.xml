@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/feeditems">
+        android:id="@+id/feeditems"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/dashboard"
@@ -28,14 +28,14 @@
             android:title="@string/Profile" />
 
 
-
     </group>
 
-    <group        android:checkableBehavior="single"
-        android:id="@+id/app">
+    <group
+        android:id="@+id/app"
+        android:checkableBehavior="single">
 
 
-    >
+        >
         <item
             android:id="@+id/contact_us"
             android:icon="@drawable/ic_call_black"
@@ -54,10 +54,11 @@
 
     </group>
 
-    <group         android:checkableBehavior="single"
-        android:id="@+id/log">
+    <group
+        android:id="@+id/log"
+        android:checkableBehavior="single">
 
-    <item
+        <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout_black"
             android:title="@string/logout" />

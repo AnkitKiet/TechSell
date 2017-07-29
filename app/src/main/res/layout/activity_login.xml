@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimaryDarker"
+    android:background="@color/colorPrimaryDark"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dip" >
@@ -28,57 +28,22 @@
         android:paddingLeft="20dip"
         android:paddingRight="20dip" >
 
-        <EditText
-            android:id="@+id/contact"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/round_shape"
-            android:hint="@string/hint_contact"
-            android:padding="10dip"
-            android:singleLine="true"
-            android:textColor="@color/input_login"
-            android:textColorHint="@color/input_login_hint"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/round_shape"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:padding="10dip"
-            android:singleLine="true"
-            android:textColor="@color/input_login"
-            android:textColorHint="@color/input_login_hint" />
-
-
 
         <!-- Login Button -->
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@drawable/round_shape_button"
-            android:text="@string/btn_login"
-            android:textColor="@color/colorPrimaryLight" />
 
         <!-- Link to Login Screen -->
 
         <Button
-            android:id="@+id/btnLinkToRegisterScreen"
+            android:id="@+id/btnGoogle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
+            android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="@string/btn_link_to_register"
-            android:textAllCaps="false"
+            android:text="@string/google"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:drawableLeft="@drawable/common_google_signin_btn_icon_dark_normal"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

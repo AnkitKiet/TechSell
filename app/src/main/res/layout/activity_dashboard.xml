@@ -32,4 +32,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header_dashboard_slider"
         app:menu="@menu/drawer_dashboard" />
+
 </android.support.v4.widget.DrawerLayout>

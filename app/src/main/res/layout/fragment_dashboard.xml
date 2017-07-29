@@ -1,67 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="#F1F0CC">
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dirty_white"
+    android:orientation="vertical">
 
 
-    <TextView
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
         android:layout_width="match_parent"
+        custom:pager_animation="Accordion"
+        custom:auto_cycle="true"
+        custom:indicator_visibility="visible"
+        custom:pager_animation_span="1100"
+        android:layout_height="200dp"/>
+
+    <com.daimajia.slider.library.Indicators.PagerIndicator
+        android:id="@+id/custom_indicator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start Making Deals"
-        android:textSize="25dip"
-        android:textColor="@color/black"
         android:gravity="center"
-        android:id="@+id/textView3"
-        android:paddingBottom="50dip"
-        android:layout_gravity="center_horizontal" />
+        custom:selected_color="#0095BF"
+        custom:unselected_color="#55333333"
+        custom:selected_drawable="@drawable/bird"
+        custom:shape="oval"
+        custom:selected_padding_left="5dp"
+        custom:selected_padding_right="5dp"
+        custom:unselected_padding_left="5dp"
+        custom:unselected_padding_right="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        custom:selected_width="6dp"
+        custom:selected_height="6dp"
+        custom:unselected_width="6dp"
+        custom:unselected_height="6dp"
+        android:layout_marginBottom="20dp"
+        />
+    <com.daimajia.slider.library.Indicators.PagerIndicator
+        android:id="@+id/custom_indicator2"
+        style="@style/AndroidImageSlider_Corner_Oval_Orange"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        />
 
-    <Button
+    <LinearLayout
+        android:id="@+id/llButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sell Items"
-        android:textSize="30dip"
-        android:drawableLeft="@drawable/sellitem"
-        android:textColor="@color/white"
-        android:background="@drawable/button_dashboard"
-        android:id="@+id/sellitem"
-        android:layout_gravity="center_horizontal"
-        android:shadowColor="#0A0101"
-        android:shadowDx="0"
-        android:shadowDy="-7"
-        android:shadowRadius="3" />
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:padding="6dp">
 
 
-    <Button
+        <ru.katso.livebutton.LiveButton
+            xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Withdraw"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_weight="1"
+            livebutton:corners="4dp"
+            livebutton:normalHeight="6dp"
+            android:id="@+id/withdraw"
+            livebutton:pressedHeight="2dp"
+            livebutton:backgroundColor="@color/colorAccent"
+            livebutton:shadowColor="#FC814A"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+
+        <ru.katso.livebutton.LiveButton
+            xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:text="Return    "
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:id="@+id/returni"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            livebutton:corners="4dp"
+            livebutton:normalHeight="6dp"
+            livebutton:pressedHeight="2dp"
+            livebutton:backgroundColor="@color/colorAccent"
+            livebutton:shadowColor="#FC814A"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buy Items"
-        android:textSize="30dip"
-        android:textColor="@color/white"
-        android:drawableLeft="@drawable/buyitem"
-        android:background="@drawable/button_dashboard"
-        android:id="@+id/buyitem"
-        android:shadowColor="#0A0101"
-        android:shadowDx="0"
-        android:shadowDy="-7"
-        android:shadowRadius="3" />
+        android:layout_above="@+id/llButtons"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/llbuttons2"
+        android:padding="4dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Withdraw Items"
-        android:textSize="30dip"
-        android:drawableLeft="@drawable/delete"
-        android:textColor="@color/white"
-        android:background="@drawable/button_dashboard"
-        android:id="@+id/deleteitem"
-        android:layout_gravity="center_horizontal"
-        android:shadowColor="#0A0101"
-        android:shadowDx="0"
-        android:shadowDy="-7"
-        android:shadowRadius="3" />
+        <ru.katso.livebutton.LiveButton
+            xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Sell"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_weight="1"
+            livebutton:corners="4dp"
+            livebutton:normalHeight="6dp"
+            android:id="@+id/sellitem"
+            livebutton:pressedHeight="2dp"
+            livebutton:backgroundColor="@color/colorAccent"
+            livebutton:shadowColor="#FC814A"/>
 
 
-</LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+
+        <ru.katso.livebutton.LiveButton
+            xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:text="Buy"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:id="@+id/buyitem"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            livebutton:corners="4dp"
+            livebutton:normalHeight="6dp"
+            livebutton:pressedHeight="2dp"
+            livebutton:backgroundColor="@color/colorAccent"
+            livebutton:shadowColor="#FC814A"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -23,7 +23,7 @@ public class SnackBar {
             Snackbar snackbar = Snackbar.with(context)
                     .text(message)
                     .textColor(Color.parseColor("#ffffffff"))
-                    .color(Color.parseColor("#ffCA1523"))
+                    .color(Color.parseColor("#8A817C"))
                     .textTypeface(tf)
                     .type(SnackbarType.MULTI_LINE)
                     .actionLabel(context.getResources().getString(R.string.ok))
@@ -65,7 +65,7 @@ public class SnackBar {
 
             snackbar.setPadding(5, 5, 5, 5);
 
-            SnackbarManager.show(snackbar.duration(Snackbar.SnackbarDuration.LENGTH_SHORT));
+            SnackbarManager.show(snackbar.duration(Snackbar.SnackbarDuration.LENGTH_LONG));
         } catch (Exception e) {
             e.printStackTrace();
         }

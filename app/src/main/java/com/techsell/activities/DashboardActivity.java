@@ -1,16 +1,19 @@
 package com.techsell.activities;
 
-import android.content.Context;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -18,17 +21,25 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.api.model.StringList;
+import com.squareup.picasso.Picasso;
 import com.techsell.R;
+import com.techsell.fragment.ContactFragment;
 import com.techsell.fragment.DashboardFragment;
+import com.techsell.fragment.ProfileFragment;
 import com.techsell.global.AppConfig;
 import com.techsell.ui.CustomTitle;
 import com.techsell.ui.CustomTypeFace;
 import com.techsell.ui.SnackBar;
 
-import java.security.PublicKey;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Ankit on 27/06/16.
@@ -43,10 +54,15 @@ public class DashboardActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     private MenuItem previousMenuItem;
     private View header;
-public String Us;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "username";
+    public static final String Username = "name";
+    public static final String profile_photo = "profile_photo";
+    public static final String uid = "uid";
+
     SharedPreferences pref;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthstateListner;
+    String photo;
+    //FirebaseUser user = mAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,23 +71,41 @@ public String Us;
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         overridePendingTransition(0, 0);
-        pref=getApplication().getSharedPreferences("Options", MODE_PRIVATE);
+        pref = getApplication().getSharedPreferences("Options", MODE_PRIVATE);
+        mAuth = FirebaseAuth.getInstance();
+        mAuthstateListner = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    Intent i = new Intent(DashboardActivity.this, LoginActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    finish();
 
-
+                }
+            }
+        };
         header = navigationView.getHeaderView(0);
+        final CircleImageView profilePhoto = (CircleImageView) header.findViewById(R.id.profile_image);
+
         TextView txtWelcome = (TextView) header.findViewById(R.id.txtWelcome);
         TextView txtName = (TextView) header.findViewById(R.id.txtName);
         Typeface typeface = CustomTypeFace.getTypeface(this);
         txtWelcome.setTypeface(typeface);
         txtName.setTypeface(typeface);
-        String Us=pref.getString(Username, "");
-
+        String Us = pref.getString(Username, "");
+        String Uid = pref.getString("id", "");
+        photo = pref.getString(profile_photo, "http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png");
+        //Toast.makeText(DashboardActivity.this, photo, Toast.LENGTH_SHORT).show();
+        Picasso.with(DashboardActivity.this).load(photo).into(profilePhoto);
+       // Toast.makeText(DashboardActivity.this, Uid, Toast.LENGTH_SHORT).show();
         txtName.setText(Us);
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                 if (previousMenuItem != null)
                     previousMenuItem.setChecked(false);
 
@@ -93,14 +127,21 @@ public String Us;
                         return true;
 
                     case R.id.contact_us:
-                        Toast.makeText(getApplicationContext(), "Contact Us", Toast.LENGTH_SHORT).show();
-
+                        ContactFragment contactFragment = new ContactFragment();
+                        fragmentTransaction.replace(R.id.frame, contactFragment);
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle(CustomTitle.getTitle(DashboardActivity.this, getString(R.string.contact_us)));
+                        AppConfig.currentFragment = contactFragment;
                         return true;
 
                     case R.id.Profile:
-                        Toast.makeText(getApplicationContext(), "Profile Under Maintainence", Toast.LENGTH_SHORT).show();
-
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        fragmentTransaction.replace(R.id.frame, profileFragment);
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle(CustomTitle.getTitle(DashboardActivity.this, getString(R.string.profile)));
+                        AppConfig.currentFragment = profileFragment;
                         return true;
+
                     case R.id.History:
                         Toast.makeText(getApplicationContext(), "Under Maintainence", Toast.LENGTH_SHORT).show();
 
@@ -111,7 +152,8 @@ public String Us;
 
                         return true;
                     case R.id.privacy:
-                        Toast.makeText(getApplicationContext(), "Under Maintainence", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(DashboardActivity.this, PrivacyPolicyActivity.class);
+                        startActivity(i);
 
                         return true;
 
@@ -120,8 +162,14 @@ public String Us;
                         return true;
 
                     case R.id.rate_us:
-                        Toast.makeText(getApplicationContext(), "Rate Us", Toast.LENGTH_SHORT).show();
-
+                        Uri uri = Uri.parse("market://details?id=" + "");
+                        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        try {
+                            startActivity(goToMarket);
+                        } catch (ActivityNotFoundException e) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + "")));
+                        }
                         return true;
 
                     default:
@@ -158,6 +206,7 @@ public String Us;
         actionBarDrawerToggle.syncState();
 
     }
+
     void logout() {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(DashboardActivity.this);
         final MaterialDialog dialog = builder.build();
@@ -167,20 +216,10 @@ public String Us;
             public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
                 dialog.dismiss();
                 try {
+
                     AppConfig.logout(DashboardActivity.this);
-                    String Us = pref.getString(Username, null);
-                    Us=Us + "Bye Bye";
-                    Toast.makeText(DashboardActivity.this,Us,Toast.LENGTH_LONG).show();
-                    SharedPreferences.Editor editor = pref.edit();
+                    mAuth.signOut();
 
-                    editor.putString(Username, "");
-
-                    Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("message", getResources().getString(R.string.logout_success));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtras(bundle);
-                    DashboardActivity.this.startActivity(intent);
                 } catch (Exception e) {
                     SnackBar.show(DashboardActivity.this, e.toString());
                     e.printStackTrace();
@@ -196,6 +235,11 @@ public String Us;
         builder.show();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthstateListner);
+    }
 
     @Override
     public void onBackPressed() {
@@ -208,10 +252,8 @@ public String Us;
             AppConfig.currentFragment = dashboardFragment;
             return;
         }
-        if(AppConfig.isLogin(DashboardActivity.this))
-        {
-            finish();
-        }
-            super.onBackPressed();
+        super.onBackPressed();
+        finish();
     }
+
 }

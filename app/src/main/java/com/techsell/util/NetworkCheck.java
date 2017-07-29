@@ -1,4 +1,4 @@
-package com.techsell.activities;
+package com.techsell.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

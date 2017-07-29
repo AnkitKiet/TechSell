@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Us :"
+        android:id="@+id/txtcontactus"
+        android:textSize="26dip"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="10dip"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You can contact us 24*7 for any query"
+        android:id="@+id/txtcontactus1"
+        android:textSize="15dip"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="5dip"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mobile : (+91)9532572177"
+        android:id="@+id/txtcontactus2"
+        android:textSize="15dip"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="5dip"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email : ankitmaurya1994@gmail.com"
+        android:id="@+id/txtcontactus3"
+        android:textSize="15dip"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="5dip"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Website : www.techsell.esy.es"
+        android:id="@+id/txtcontactus5"
+        android:textSize="15dip"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="copyright @ developer_ankit"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/txtcontactus4"
+            android:textSize="15dip"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
+    </RelativeLayout>
+
+</LinearLayout>
